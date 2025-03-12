@@ -1,6 +1,7 @@
 "use client";
 
 import CompareForm from "@/components/compare-form";
+import { UserComparison } from "@/components/user-comparison";
 
 import { UserProfile } from "@/components/user-profile";
 import { useGitHubUser } from "@/hooks/useGitHubUser";
@@ -16,12 +17,14 @@ const ComparePage = () => {
   const {
     user: firstUser,
     isLoading: firstIsLoading,
+    repos: firstRepos,
     error: firstError,
   } = useGitHubUser(firstUsername, shouldFetch);
 
   const {
     user: secondUser,
     isLoading: secondIsLoading,
+    repos: secondRepos,
     error: secondError,
   } = useGitHubUser(secondUsername, shouldFetch);
 
@@ -34,19 +37,9 @@ const ComparePage = () => {
     setShouldFetch(true);
   };
 
-  // const comparingResults = (firstUser: GitHubUser, secondUser: GitHubUser) => {
-  //   let comparedResults = {};
-  //   if (firstUser.public_repos > secondUser.public_repos) {
-  //     comparedResults.repos = firstUser.public_repos;
-  //   } else {
-  //     comparedResults.repos = secondUser.public_repos;
-  //   }
-
-  //   return comparedResults;
-  // };
-
-  // comparingResults(firstCompareUsername, secondCompareUsername);
-
+  const users = [firstUser, secondUser];
+  const repos = [firstRepos, secondRepos];
+  
   return (
     <div className="container mx-auto py-8 px-4 max-w-5xl">
       <header className="w-full flex flex-col mb-8 text-center">
@@ -61,57 +54,7 @@ const ComparePage = () => {
           />
         </div>
       </header>
-
-      <div className="grid grid-cols-2 ">
-        <main>
-          {firstError && (
-            <div className="rounded-lg border border-destructive p-4 text-destructive text-center my-8">
-              User not found!
-            </div>
-          )}
-
-          {firstUser && !firstIsLoading && (
-            <div className="space-y-8">
-              <UserProfile user={firstUser} />
-            </div>
-          )}
-
-          {firstIsLoading && (
-            <div className="flex justify-center my-12">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-            </div>
-          )}
-        </main>
-
-        <main>
-          {secondError && (
-            <div className="rounded-lg border border-destructive p-4 text-destructive text-center my-8">
-              User not found!
-            </div>
-          )}
-
-          {secondUser && !secondIsLoading && (
-            <div className="space-y-8">
-              <UserProfile user={secondUser} />
-            </div>
-          )}
-
-          {secondIsLoading && (
-            <div className="flex justify-center my-12">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-            </div>
-          )}
-        </main>
-      </div>
-      <div className="flex justify-center mt-6">
-        {firstUser && secondUser && (
-          <span>
-            {firstUser.public_repos > secondUser.public_repos
-              ? firstUser.public_repos
-              : secondUser.public_repos}
-          </span>
-        )}
-      </div>
+      <UserComparison users={users} repos={repos} />
     </div>
   );
 };
