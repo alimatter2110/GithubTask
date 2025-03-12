@@ -3,9 +3,7 @@
 import CompareForm from "@/components/compare-form";
 import { UserComparison } from "@/components/user-comparison";
 
-import { UserProfile } from "@/components/user-profile";
 import { useGitHubUser } from "@/hooks/useGitHubUser";
-import { GitHubUser } from "@/lib/github-api";
 
 import { useState } from "react";
 
@@ -18,14 +16,12 @@ const ComparePage = () => {
     user: firstUser,
     isLoading: firstIsLoading,
     repos: firstRepos,
-    error: firstError,
   } = useGitHubUser(firstUsername, shouldFetch);
 
   const {
     user: secondUser,
     isLoading: secondIsLoading,
     repos: secondRepos,
-    error: secondError,
   } = useGitHubUser(secondUsername, shouldFetch);
 
   const onCompare = (
@@ -39,7 +35,7 @@ const ComparePage = () => {
 
   const users = [firstUser, secondUser];
   const repos = [firstRepos, secondRepos];
-  
+
   return (
     <div className="container mx-auto py-8 px-4 max-w-5xl">
       <header className="w-full flex flex-col mb-8 text-center">
