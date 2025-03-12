@@ -33,8 +33,8 @@ export function SearchForm({ onSearch, isLoading = false }: SearchFormProps) {
     },
   });
 
-  function onSubmit(values: SearchFormValues) {
-    onSearch(values.username);
+  function onSubmit(value: SearchFormValues) {
+    onSearch(value.username);
   }
 
   return (

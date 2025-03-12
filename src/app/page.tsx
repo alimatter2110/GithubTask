@@ -3,7 +3,8 @@
 import { RepositoryList } from "@/components/repository-list";
 import { SearchForm } from "@/components/search-form";
 import { UserProfile } from "@/components/user-profile";
-import { useGitHubUser } from "@/hooks/useGitHub";
+import { useGitHubUser } from "@/hooks/useGitHubUser";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
@@ -15,21 +16,24 @@ export default function Home() {
     shouldFetch
   );
 
-  function handleSearch(searchUsername: string) {
+  function onSearch(searchUsername: string) {
     setUsername(searchUsername);
     setShouldFetch(true);
   }
 
   return (
     <div className="container mx-auto py-8 px-4 max-w-5xl">
-      <header className="mb-8 text-center">
+      <header className="mb-8 text-center space-y-4">
         <h1 className="text-3xl font-bold mb-2">GitHub Explorer</h1>
         <p className="text-muted-foreground mb-6">
           Search for GitHub users and explore their repositories
         </p>
         <div className="flex justify-center">
-          <SearchForm onSearch={handleSearch} isLoading={isLoading} />
+          <SearchForm onSearch={onSearch} isLoading={isLoading} />
         </div>
+        <Link href="/compare" className="underline cursor-pointer">
+          Compare
+        </Link>
       </header>
 
       <main>
