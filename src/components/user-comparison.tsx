@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 interface UserComparisonProps {
-  users: (GitHubUser | null)[];
+  users: (GitHubUser | undefined)[];
   repos: GitHubRepo[][];
 }
 

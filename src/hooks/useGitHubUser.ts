@@ -7,13 +7,10 @@ import { useQuery } from "@tanstack/react-query";
  * @param shouldFetch Flag to control when the search is triggered
  * @returns Object containing user data, repositories, loading state, and error state
  */
-export function useGitHubUser(
-  username: string | null,
-  shouldFetch: boolean = false
-) {
+export function useGitHubUser(username: string, shouldFetch: boolean = false) {
   const userQuery = useQuery({
     queryKey: ["user", username],
-    queryFn: () => (username ? fetchGitHubUser(username) : null),
+    queryFn: () => fetchGitHubUser(username as string),
     enabled: !!username && shouldFetch,
     retry: false,
   });

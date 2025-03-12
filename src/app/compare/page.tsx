@@ -8,8 +8,8 @@ import { useGitHubUser } from "@/hooks/useGitHubUser";
 import { useState } from "react";
 
 const ComparePage = () => {
-  const [firstUsername, setFirstUsername] = useState<string | null>(null);
-  const [secondUsername, setSecondUsername] = useState<string | null>(null);
+  const [firstUsername, setFirstUsername] = useState("");
+  const [secondUsername, setSecondUsername] = useState("");
   const [shouldFetch, setShouldFetch] = useState(false);
 
   const {
@@ -34,7 +34,7 @@ const ComparePage = () => {
   };
 
   const users = [firstUser, secondUser];
-  const repos = [firstRepos, secondRepos];
+  const repos = [firstRepos || [], secondRepos || []];
 
   return (
     <div className="container mx-auto py-8 px-4 max-w-5xl">
@@ -50,7 +50,7 @@ const ComparePage = () => {
           />
         </div>
       </header>
-      <UserComparison users={users} repos={repos} />
+      {users && repos && <UserComparison users={users} repos={repos} />}
     </div>
   );
 };

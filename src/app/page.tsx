@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
-  const [username, setUsername] = useState<string | null>(null);
+  const [username, setUsername] = useState("");
   const [shouldFetch, setShouldFetch] = useState(false);
 
   const { user, repos, isLoading, error } = useGitHubUser(
