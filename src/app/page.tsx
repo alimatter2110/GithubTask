@@ -11,15 +11,15 @@ export default function Home() {
   const [username, setUsername] = useState("");
   const [shouldFetch, setShouldFetch] = useState(false);
 
-  const { user, repos, isLoading, error } = useGitHubUser(
-    username,
-    shouldFetch
-  );
-
   function onSearch(searchUsername: string) {
     setUsername(searchUsername);
     setShouldFetch(true);
   }
+
+  const { user, repos, isLoading, error } = useGitHubUser(
+    username,
+    shouldFetch
+  );
 
   return (
     <div className="container mx-auto py-8 px-4 max-w-5xl">
@@ -32,7 +32,7 @@ export default function Home() {
           <SearchForm onSearch={onSearch} isLoading={isLoading} />
         </div>
         <Link href="/compare" className="underline cursor-pointer">
-          Compare
+          Go to the compare page
         </Link>
       </header>
 

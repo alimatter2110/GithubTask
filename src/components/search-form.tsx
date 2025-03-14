@@ -34,6 +34,7 @@ export function SearchForm({ onSearch, isLoading = false }: SearchFormProps) {
   });
 
   function onSubmit(value: SearchFormValues) {
+    console.log(value);
     onSearch(value.username);
   }
 
@@ -48,9 +49,9 @@ export function SearchForm({ onSearch, isLoading = false }: SearchFormProps) {
           name="username"
           render={({ field }) => (
             <FormItem className="flex-1">
-              <FormControl>
+              <FormControl className="w-full">
                 <Input
-                  placeholder="Enter GitHub username..."
+                  placeholder="Enter username..."
                   {...field}
                   className="w-full"
                 />
@@ -76,3 +77,13 @@ export function SearchForm({ onSearch, isLoading = false }: SearchFormProps) {
     </Form>
   );
 }
+
+/* Accessing the userinput with onSubmit function through ...field which spreads all props 
+
+          placeholder="Enter GitHub username..."
+[[ value={field.value} // Explicitly pass the value ]]
+          onChange={field.onChange} // Explicitly pass the onChange handler
+          onBlur={field.onBlur} // Explicitly pass the onBlur handler
+
+
+*/

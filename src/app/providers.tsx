@@ -10,3 +10,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 }
+
+//   const [queryClient] = useState(() => new QueryClient()); lazy intialization created once when the component mount 
+//   cosnt queryClient = new QueryClient(); eager intialization created everytime the component renders so it leads to performance issues

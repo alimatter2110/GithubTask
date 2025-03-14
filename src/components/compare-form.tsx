@@ -41,16 +41,16 @@ const CompareForm = ({ onCompare, isLoading = false }: CompareFormProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex w-full max-w-md space-x-2"
+        className="flex w-full max-w-5xl space-x-2"
       >
         <FormField
           control={form.control}
           name="firstUsername"
           render={({ field }) => (
-            <FormItem>
-              <FormControl>
+            <FormItem >
+              <FormControl >
                 <Input
-                  placeholder="Enter first GitHub username..."
+                  placeholder="Enter first username..."
                   {...field}
                 />
               </FormControl>
@@ -63,10 +63,10 @@ const CompareForm = ({ onCompare, isLoading = false }: CompareFormProps) => {
           control={form.control}
           name="secondUsername"
           render={({ field }) => (
-            <FormItem>
-              <FormControl>
+            <FormItem >
+              <FormControl >
                 <Input
-                  placeholder="Enter second GitHub username..."
+                  placeholder="Enter second username..."
                   {...field}
                 />
               </FormControl>
@@ -81,10 +81,7 @@ const CompareForm = ({ onCompare, isLoading = false }: CompareFormProps) => {
               Comparing
             </span>
           ) : (
-            <span className="flex items-center gap-2">
-              <Search className="h-4 w-4" />
-              Compare
-            </span>
+            <span className="flex items-center gap-2">Compare</span>
           )}
         </Button>
       </form>

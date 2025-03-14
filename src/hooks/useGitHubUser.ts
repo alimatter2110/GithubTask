@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
  * @returns Object containing user data, repositories, loading state, and error state
  */
 export function useGitHubUser(username: string, shouldFetch: boolean = false) {
+  
   const userQuery = useQuery({
     queryKey: ["user", username],
     queryFn: () => fetchGitHubUser(username as string),

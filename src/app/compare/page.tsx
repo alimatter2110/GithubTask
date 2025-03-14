@@ -4,6 +4,7 @@ import CompareForm from "@/components/compare-form";
 import { UserComparison } from "@/components/user-comparison";
 
 import { useGitHubUser } from "@/hooks/useGitHubUser";
+import Link from "next/link";
 
 import { useState } from "react";
 
@@ -11,6 +12,15 @@ const ComparePage = () => {
   const [firstUsername, setFirstUsername] = useState("");
   const [secondUsername, setSecondUsername] = useState("");
   const [shouldFetch, setShouldFetch] = useState(false);
+
+  const onCompare = (
+    firstCompareUsername: string,
+    secondCompareUsername: string
+  ) => {
+    setFirstUsername(firstCompareUsername);
+    setSecondUsername(secondCompareUsername);
+    setShouldFetch(true);
+  };
 
   const {
     user: firstUser,
@@ -24,15 +34,6 @@ const ComparePage = () => {
     repos: secondRepos,
   } = useGitHubUser(secondUsername, shouldFetch);
 
-  const onCompare = (
-    firstCompareUsername: string,
-    secondCompareUsername: string
-  ) => {
-    setFirstUsername(firstCompareUsername);
-    setSecondUsername(secondCompareUsername);
-    setShouldFetch(true);
-  };
-
   const users = [firstUser, secondUser];
   const repos = [firstRepos || [], secondRepos || []];
 
@@ -43,12 +44,15 @@ const ComparePage = () => {
         <p className="text-muted-foreground mb-6">
           Search for GitHub users and Compare their repositories
         </p>
-        <div className="flex mx-auto mb-4 justify-between">
+        <div className="flex mx-auto mb-4 justify-center">
           <CompareForm
             onCompare={onCompare}
             isLoading={firstIsLoading || secondIsLoading}
           />
         </div>
+        <Link href="/" className="underline cursor-pointer flex justify-center">
+          Go to the search page
+        </Link>
       </header>
       {users && repos && <UserComparison users={users} repos={repos} />}
     </div>
