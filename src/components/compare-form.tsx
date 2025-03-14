@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Search } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -47,12 +46,9 @@ const CompareForm = ({ onCompare, isLoading = false }: CompareFormProps) => {
           control={form.control}
           name="firstUsername"
           render={({ field }) => (
-            <FormItem >
-              <FormControl >
-                <Input
-                  placeholder="Enter first username..."
-                  {...field}
-                />
+            <FormItem>
+              <FormControl>
+                <Input placeholder="Enter first username..." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -63,12 +59,9 @@ const CompareForm = ({ onCompare, isLoading = false }: CompareFormProps) => {
           control={form.control}
           name="secondUsername"
           render={({ field }) => (
-            <FormItem >
-              <FormControl >
-                <Input
-                  placeholder="Enter second username..."
-                  {...field}
-                />
+            <FormItem>
+              <FormControl>
+                <Input placeholder="Enter second username..." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
